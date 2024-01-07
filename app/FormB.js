@@ -4,16 +4,20 @@ function FormB({ onSubmit, age }) {
     const [marvelShows, setMarvelShows] = useState("");
 
     const handleSubmit = (event) => {
+        event.preventDefault()
+        onSubmit({
+            type:"Form B",
+            age:age,
+            dcShows:null,
+            marvelShows:marvelShows
+        })
     };
-
-
-
     return (
-        <form id="marvel" >
+        <form id="marvel" onSubmit={handleSubmit}>
             <h2>Form B</h2>
             <label>
                 Select Marvel Shows:
-                <select  >
+                <select onChange={(e)=>{setMarvelShows(e.target.value)}} >
                     <option value="">--Select--</option>
                     <option value="WandaVision">WandaVision</option>
                     <option value="The Falcon and the Winter Soldier">
